@@ -28,6 +28,30 @@
             3. 確認call api的時間點回傳的資料內容，不需要做資料庫
 2. 待定
 
+## Construct
+
+- app
+  - config
+    - basemodel.py: APIs respond/request model
+  - routers
+    - weather.py: API router of task 1 & 2
+    - warning.py: API router of task 3 & 4
+  - view: front-end logic operating DOM
+  - main.py: Controller
+  - handlers.py: Define actions for exceptions
+- public
+  - css
+    - basic.css: CSS for basic compartments
+    - index.css: CSS for index.html specific elements
+    - county.css: CSS for county.html specific elements
+  - images: image resources
+- static
+  - index.html: HTML for task 1 & 2
+  - county.html: HTML for task 3 & 4
+- .env: key storage
+- .gitignore
+- README.md
+
 ## Works
 
 ### day1
