@@ -1,22 +1,37 @@
-# 合作開發
+# GroupProject - team 8
 
-## Mission
+## 氣象資訊 User Story
 
-[Git, GitHub合作開發](https://docs.google.com/presentation/d/15PdPgSRaigOcGNZzfL7EW1tQxiC0vu5QgTehw1w6mdY/edit#slide=id.p)
+> 氣象局API [Swagger](https://opendata.cwa.gov.tw/dist/opendata-swagger.html#/)
 
-## GitHub 共同開發
+1. 使用者/欲查詢地區未來36小時內的天氣、氣溫區間與降雨情況/因為想提前應對
+2. 使用者/欲查詢全台灣目前的天氣狀況、降雨機率圖示，並以[表格](https://www.cwa.gov.tw/V8/C/W/County/index.html)呈現/想問候當地的朋友時可以參考
+3. 使用者/欲查詢地區未來五天中午的熱傷害指數與警戒標示，並以[此方式](https://crowa.cwa.gov.tw/HealthWeather/)呈現/不想被熱死
+4. 使用者/欲查詢全台灣當日指外線指數，並以[此方式](https://www.cwa.gov.tw/V8/C/W/OBS_UVI.html)呈現/要擦防曬
+5. 使用者/想要在Discord收到Bot傳的每日氣象預報/方便
 
-1. Fork from host repository
-2. Develop on develop branch
-3. Pull request to host repository/ develop branch
-4. Host check pull request and merge into host develop branch
-5. Merger to main branch when section completed
+## 優先序
 
-## FAQ
+```py
+1+2 > 5 > 3 > 4
+```
 
-1. Merge conflict: 複數開發者編輯同一份檔案，應將功能細分至資料夾或檔案並避免動到別的資料夾。
-2. 7/18 23:59之前繳交
-3. 7/10 19:00線上分享，5分鐘投影片
-    1. 分工表
-    2. 展示成果(連結)
-    3. 心得感想
+## EPIC, STORY & TASK
+
+1. 顯示全台灣未來36小時天氣
+    1. 以表格顯示全台灣天氣狀況、降雨機率圖示
+    2. 特定地區未來36小時內的天氣、氣溫區間與降雨情況
+        1. front-end: 1 html RWD, 點擊表格/懸浮可以顯示特定地區(call back-end api & render) [參考](https://nomadlist.com/)
+        2. back-end
+            1. API1: 回應全台灣氣象與降雨機率的JSON
+            2. API2: 根據query的縣市回應該地區未來36小時內的天氣、氣溫區間與降雨情況
+            3. 確認call api的時間點回傳的資料內容，不需要做資料庫
+2. 待定
+
+## Works
+
+### day1
+
+1. 組長(昊)：分MVC架構，repository
+2. 後端(書硯): 定義API規格(了解氣象局API回傳資料)，Model Class(respond/request)
+3. 前端(聖鎧/宜群): navbar與基礎背景切版, 提出資料需求, static規劃(表格分三時段顯示，縣市點進去redirect county.html render)
