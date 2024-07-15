@@ -9,6 +9,7 @@
 3. 使用者/欲查詢地區未來五天中午的熱傷害指數與警戒標示，並以[此方式](https://crowa.cwa.gov.tw/HealthWeather/)呈現/不想被熱死
 4. 使用者/欲查詢全台灣當日指外線指數，並以[此方式](https://www.cwa.gov.tw/V8/C/W/OBS_UVI.html)呈現/要擦防曬
 5. 使用者/想要在Discord收到Bot傳的每日氣象預報/方便
+6. Dev/在氣象局公布新數據之後去call api並存在cache中/不用每一次request都要call兩次api
 
 ## 優先序
 
@@ -44,10 +45,12 @@
     - basic.css: CSS for basic compartments
     - index.css: CSS for index.html specific elements
     - county.css: CSS for county.html specific elements
+    - warning.css: CSS for warning.html specific elements
   - images: image resources
 - static
-  - index.html: HTML for task 1 & 2
-  - county.html: HTML for task 3 & 4
+  - index.html: HTML for task 1
+  - county.html: HTML for task 2
+  - warning.html: HTML for task 3 & 4
 - .env: key storage
 - .gitignore
 - README.md
@@ -59,3 +62,11 @@
 1. 組長(昊)：分MVC架構，repository
 2. 後端(書硯): 定義API規格(了解氣象局API回傳資料)，Model Class(respond/request)
 3. 前端(聖鎧/宜群): navbar與基礎背景切版, 提出資料需求, static規劃(表格分三時段顯示，縣市點進去redirect county.html render)
+
+### day2
+
+1. 陳昊: main.py & discord bot
+2. 書硯: weather.py router and basemodel.py
+3. 聖鎧: county.html 主畫面部分 RWD
+4. 宜群: index.html 主畫面部分 RWD
+5. 20:00 daily sprint
