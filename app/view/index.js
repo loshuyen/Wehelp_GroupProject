@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("/api/weather", {
         method: "GET",
-        headers: {
-          Authorization: "CWA-88EDF13E-87C9-4B54-B0A1-699275CFD8C2",
-        },
       });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
