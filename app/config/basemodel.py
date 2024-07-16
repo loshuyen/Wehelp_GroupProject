@@ -2,11 +2,11 @@ from pydantic import BaseModel
 
 class CurrentWeatherBase(BaseModel):
     county: str
-    wx: str
-    max_t: int
-    min_t: int
-    ci: str
-    pop: int
+    Wx: str
+    MaxT: int
+    MinT: int
+    CI: str
+    PoP: int
 
 class CurrentWeather(BaseModel):
     data: list[CurrentWeatherBase]
