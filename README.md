@@ -8,7 +8,7 @@
 2. 使用者/欲查詢全台灣目前的天氣狀況、降雨機率圖示，並以[表格](https://www.cwa.gov.tw/V8/C/W/County/index.html)呈現/想問候當地的朋友時可以參考
 3. 使用者/欲查詢地區未來五天中午的熱傷害指數與警戒標示，並以[此方式](https://crowa.cwa.gov.tw/HealthWeather/)呈現/不想被熱死
 4. 使用者/欲查詢全台灣當日指外線指數，並以[此方式](https://www.cwa.gov.tw/V8/C/W/OBS_UVI.html)呈現/要擦防曬
-5. 使用者/想要在Discord收到Bot傳的每日氣象預報/方便
+5. 使用者/想要每天早上在Discord收到Bot傳的最新每日氣象預報/方便
 6. Dev/在氣象局公布新數據之後去call api並存在cache中/不用每一次request都要call兩次api
 
 ## 優先序
