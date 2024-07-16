@@ -22,7 +22,7 @@ def get_all_current_weather() -> CurrentWeather:
                 "MaxT": location["weatherElement"][4]["time"][0]["parameter"]["parameterName"],
             }
         )
-    return result
+    return {"data": result}
 
 @router.get("/api/weather/{county_name}")
 def get_weather_by_county(county_name: str, factor: str | None = None) -> CountyWeather:
