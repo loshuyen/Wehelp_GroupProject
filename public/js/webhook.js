@@ -1,4 +1,4 @@
-export function discordBot(weather, percip, temp, UV, hotDam){
+export function discordBot(weather, percip, temp, UV, hotDam, cIndex){
   let serverUrl = 'https://discord.com/api/webhooks/1162404320399085690/y6pNTIyURc4-ftZIicqF49uzwNTF70bRw_9D1QyVrmxzbwagnXXX-HNW2E6QvzUJVUVS'
   let timestamp = new Date()
 
@@ -32,7 +32,8 @@ export function discordBot(weather, percip, temp, UV, hotDam){
         {name: '降  雨🌧️', value: percip, inline: true},
         {name: '氣  溫🌡️', value: temp, inline: true},
         {name: '紫外線🕵️‍♀️', value: UV, inline: true},
-        {name: '熱傷害🥵', value: hotDam, inline: true}
+        {name: '熱傷害🥵', value: hotDam, inline: true},
+        {name: '舒適度🧋', value: cIndex, inline: true}
       ],
       image: {
         url: 'https://p2.bahamut.com.tw/B/GUILD/f/7/0000015737_background.PNG',
@@ -51,4 +52,3 @@ export function discordBot(weather, percip, temp, UV, hotDam){
   })
 
 }
-
