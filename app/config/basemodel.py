@@ -10,6 +10,7 @@ class CurrentWeatherBase(BaseModel):
 
 class CurrentWeather(BaseModel):
     data: list[CurrentWeatherBase]
+    publishTime: str
 
 class WeatherBase(BaseModel):
     startTime: str
