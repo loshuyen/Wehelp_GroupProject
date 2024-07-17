@@ -61,3 +61,8 @@ class CountyUVIndex(BaseModel):
 
 class TaiwanUVIndex(BaseModel):
     data: list[CountyUVIndex]
+
+
+class Error(BaseModel):
+    error: bool
+    message: str

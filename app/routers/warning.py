@@ -1,10 +1,19 @@
 from fastapi import *
+from fastapi.responses import JSONResponse
 from config.basemodel import *
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta
 
-router = APIRouter()
+router = APIRouter(
+    responses={
+        400: {'model': Error, 'description': '資料取得失敗，輸入不正確或其他原因'},
+        422: {'model': Error,
+              'description': "輸入格式錯誤"
+              },
+        500: {'model': Error, 'description': '伺服器內部錯誤'}
+    }
+)
 
 def fetch_hotindex():
   query_param = {
@@ -12,54 +21,68 @@ def fetch_hotindex():
     "sort": "IssueTime"
     }
   url = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/M-A0085-001"
-  data = requests.get(url, query_param).json()
-  counties_data = data['records']['Locations']
-  county_hot_damage_list = []
-  county_hot_damage = {}
-  for county_data in counties_data:
-    county_name = county_data['CountyName']
-    town_hot_damage_list = []
-    town_hot_damage = {}
-    for town_data in county_data['Location']:
-      town_name = town_data['TownName']
-      hot_damage_list = []
-      hot_damage = {}
-      for time_data in town_data['Time']:
-        date = time_data['IssueTime'].split(" ")[0]
-        index = time_data['WeatherElements']['HeatInjuryIndex']
-        warning = time_data['WeatherElements']['HeatInjuryWarning']
-        if not hot_damage:
-          hot_damage = {
-            'date': date,
-            'maxIndex': [index],
-            'maxWarning': [warning]
-          }
-        elif hot_damage['date'] == date:
-          hot_damage['maxIndex'].append(index)
-          hot_damage['maxWarning'].append(warning)
-        elif hot_damage['date'] != date:
-          maxIndex = max(hot_damage['maxIndex'])
-          ind = hot_damage['maxIndex'].index(maxIndex)
-          hot_damage['maxIndex'] = maxIndex
-          hot_damage['maxWarning'] = hot_damage['maxWarning'][ind]
-          hot_damage_list.append(hot_damage)
-          hot_damage = {
+  try:
+    data = requests.get(url, query_param).json()
+    counties_data = data['records']['Locations']
+    county_hot_damage_list = []
+    county_hot_damage = {}
+    for county_data in counties_data:
+      county_name = county_data['CountyName']
+      town_hot_damage_list = []
+      town_hot_damage = {}
+      for town_data in county_data['Location']:
+        town_name = town_data['TownName']
+        hot_damage_list = []
+        hot_damage = {}
+        for time_data in town_data['Time']:
+          date = time_data['IssueTime'].split(" ")[0]
+          index = time_data['WeatherElements']['HeatInjuryIndex']
+          warning = time_data['WeatherElements']['HeatInjuryWarning']
+          if not hot_damage:
+            hot_damage = {
               'date': date,
               'maxIndex': [index],
               'maxWarning': [warning]
-          }
-      town_hot_damage = {
-        'town': town_name,
-        'data': hot_damage_list
+            }
+          elif hot_damage['date'] == date:
+            hot_damage['maxIndex'].append(index)
+            hot_damage['maxWarning'].append(warning)
+          elif hot_damage['date'] != date:
+            maxIndex = max(hot_damage['maxIndex'])
+            ind = hot_damage['maxIndex'].index(maxIndex)
+            hot_damage['maxIndex'] = maxIndex
+            hot_damage['maxWarning'] = hot_damage['maxWarning'][ind]
+            hot_damage_list.append(hot_damage)
+            hot_damage = {
+                'date': date,
+                'maxIndex': [index],
+                'maxWarning': [warning]
+            }
+        town_hot_damage = {
+          'town': town_name,
+          'data': hot_damage_list
+        }
+        town_hot_damage_list.append(town_hot_damage)
+      county_hot_damage = {
+        'county': county_name,
+        'data': town_hot_damage_list
       }
-      town_hot_damage_list.append(town_hot_damage)
-    county_hot_damage = {
-      'county': county_name,
-      'data': town_hot_damage_list
-    }
-    county_hot_damage_list.append(county_hot_damage)
+      county_hot_damage_list.append(county_hot_damage)
 
-  return {'data':county_hot_damage_list}
+    content = {'data':county_hot_damage_list}
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=content
+    )
+  except HTTPException as e:
+      response = Error(
+          error=True,
+          message=e.detail
+      )
+      return JSONResponse(
+          status_code=e.status_code,
+          content=dict(response)
+      )
 
 def station_id(id):
   match id:
@@ -127,11 +150,15 @@ def fetch_uv():
   return {'data': county_UV_Index_list}
 
 
-@router.get("/api/hotdamage", response_model=TaiwanHotDamage)
+@router.get("/api/hotdamage", responses={
+  200: {'model': TaiwanHotDamage, 'description': "資料取得成功"}
+},response_class=JSONResponse,summary="取得各縣市鄉鎮五天內當日最大熱傷害指數與傷害警示")
 async def get_hot_damage(request: Request):
   return fetch_hotindex()
 
 
-@router.get("/api/UV", response_model=TaiwanUVIndex)
+@router.get("/api/UV", responses={
+  200: {'model': TaiwanUVIndex, 'description': "資料取得成功"}
+},response_class=JSONResponse, summary="取得當日各縣市紫外線指數")
 async def get_uv(request: Request):
   return fetch_uv()
