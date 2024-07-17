@@ -1,0 +1,94 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+header{
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #E8E8E8;
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  height: 30px;
+  margin: 10px auto;
+}
+.headline a{
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  color: #448899;
+  font-size: 30px;
+  font-weight: bold; 
+  text-decoration: none;
+}
+.navbar-menu{
+  display: flex;
+  height: 30px;
+  line-height: 30px; 
+}
+.navbar-menu div{
+  display: block;
+  text-decoration: none;
+  padding: 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* .section-all-county{
+  display: flex;
+} */
+.container-all-county{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.title-all-county{
+  width: 1200px;
+  text-decoration: underline;
+  font-size: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.all-county-publish-time{
+  display: block;
+  width: 800px;
+  font-size: 14px;
+  text-align: right;
+}
+
+.main-weather-table{
+  display: flex;
+  justify-content: center;
+}
+.container-weather-table{
+  width: 1200px;
+}
+.container-weather-table > .row{
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+.container-weather-table > .row > div{
+  margin: 10px 20px;
+  cursor: pointer;
+}
+.container-weather-table > .row > div >span{
+  padding: 10px 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 104px;
+  background-color: #879aaf;
+}
+.footer-text {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}

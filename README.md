@@ -8,7 +8,7 @@
 2. 使用者/欲查詢全台灣目前的天氣狀況、降雨機率圖示，並以[表格](https://www.cwa.gov.tw/V8/C/W/County/index.html)呈現/想問候當地的朋友時可以參考
 3. 使用者/欲查詢地區未來五天中午的熱傷害指數與警戒標示，並以[此方式](https://crowa.cwa.gov.tw/HealthWeather/)呈現/不想被熱死
 4. 使用者/欲查詢全台灣當日指外線指數，並以[此方式](https://www.cwa.gov.tw/V8/C/W/OBS_UVI.html)呈現/要擦防曬
-5. 使用者/想要在Discord收到Bot傳的每日氣象預報/方便
+5. 使用者/想要每天早上在Discord收到Bot傳的最新每日氣象預報/方便
 6. Dev/在氣象局公布新數據之後去call api並存在cache中/不用每一次request都要call兩次api
 
 ## 優先序
@@ -27,7 +27,12 @@
             1. API1: 回應全台灣氣象與降雨機率的JSON
             2. API2: 根據query的縣市回應該地區未來36小時內的天氣、氣溫區間與降雨情況
             3. 確認call api的時間點回傳的資料內容，不需要做資料庫
-2. 待定
+2. 顯示各縣市當日最大紫外線指數與熱傷害燈號
+    1. 以表格與下拉式選單顯示當日最大紫外線指數
+    2. 以表格與下拉式選單底色顯示當日熱傷害警示，並以未來五日最大值作圖
+        1. front-end: 1 html RWD, 中間各縣市表格，左邊是選擇中縣市的紫外線，右邊是該縣市外來五日的熱指數周報 [參考](https://crowa.cwa.gov.tw/HealthWeather/)
+        2. back-end
+            1. API: 提供以縣市為參數的當日區域內最大紫外線指數和未來5日的最大熱傷害指數與燈號(以區為主)
 
 ## Construct
 
@@ -68,5 +73,13 @@
 1. 陳昊: main.py & discord bot
 2. 書硯: weather.py router and basemodel.py
 3. 聖鎧: county.html 主畫面部分 RWD
-4. 宜群: index.html 主畫面部分 RWD
+4. 宜群: index.html 主畫面部分 RWD & navbar/footer
 5. 20:00 daily sprint
+
+### day3
+
+1. 陳昊: warning.py router, discordBot.py  basemodel.py
+2. 書硯: weather cache/ api modify and a little basemodel.py
+3. 聖鎧: warning.html
+4. 宜群: navbar 連結 / UX
+5. 21:30 daily sprint
