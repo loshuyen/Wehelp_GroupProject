@@ -1,45 +1,8 @@
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.section-all-county{
+  margin-bottom: 10px;
+  background: #d3d2d2;
+  
 }
-header{
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid #E8E8E8;
-}
-.navbar{
-  display: flex;
-  justify-content: space-between;
-  width: 1200px;
-  height: 30px;
-  margin: 10px auto;
-}
-.headline a{
-  padding: 0 10px;
-  height: 30px;
-  line-height: 30px;
-  color: #448899;
-  font-size: 30px;
-  font-weight: bold; 
-  text-decoration: none;
-}
-.navbar-menu{
-  display: flex;
-  height: 30px;
-  line-height: 30px; 
-}
-.navbar-menu div{
-  display: block;
-  text-decoration: none;
-  padding: 0 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* .section-all-county{
-  display: flex;
-} */
 .container-all-county{
   display: flex;
   justify-content: center;
@@ -48,47 +11,97 @@ header{
 .title-all-county{
   width: 1200px;
   text-decoration: underline;
-  font-size: 20px;
+  font-size: 22px;
   margin-top: 30px;
   text-align: center;
 }
 
 .all-county-publish-time{
   display: block;
-  width: 800px;
-  font-size: 14px;
+  width: 500px;
+  font-size: 12px;
   text-align: right;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
+svg {
+  height: 80vh;
+}
+path {
+  stroke: #666666;
+  fill: transparent;
+  transition: 0.5s;
+  cursor: pointer;
+}
+/* path:hover {
+  fill: #448899;
+} */
+
+.main-container{
+  display: flex;
+  justify-content: center;
+}
+.svg-container{
+  margin-top: 10px;
 }
 
 .main-weather-table{
   display: flex;
   justify-content: center;
+  margin-bottom: 25px;
 }
 .container-weather-table{
-  width: 1200px;
+  width: 700px;
 }
 .container-weather-table > .row{
   display: flex;
   justify-content: center;
-  margin: 15px;
+  margin: 10px 10px;
 }
 .container-weather-table > .row > div{
-  margin: 10px 20px;
+  margin: 0px 10px;
+  padding: 10px 10px;
   cursor: pointer;
 }
 .container-weather-table > .row > div >span{
-  padding: 10px 20px;
+  padding: 5px 20px;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 104px;
-  background-color: #879aaf;
+.highlight {
+  fill: rgb(229, 156, 88); 
+  background-color: rgb(229, 156, 88); 
 }
-.footer-text {
-  color: white;
-  font-weight: bold;
-  text-align: center;
+
+@media (max-width: 1200px) {
+  svg {
+    height: 50vh;
+  }
+  .all-county-publish-time{
+    width: 300px;
+  }
+  .main-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+  }
+  .container-weather-table{
+    width: 500px;
+    margin-top: 30px;
+  }
+
+  .container-weather-table > .row{
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+  }
+  .container-weather-table > .row > div{
+    margin: 5px 5px;
+    padding: 0px 5px;
+    cursor: pointer;
+  }
+  .container-weather-table > .row > div >span{
+    padding: 5px 10px;
+  }
 }
