@@ -1,6 +1,7 @@
 from fastapi import *
 from fastapi.responses import JSONResponse
 from config.basemodel import *
+from pydantic import ValidationError
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta
@@ -74,7 +75,7 @@ def fetch_hotindex():
         status_code=status.HTTP_200_OK,
         content=content
     )
-  except HTTPException as e:
+  except (HTTPException, ValidationError) as e:
       response = Error(
           error=True,
           message=e.detail
@@ -132,22 +133,36 @@ def fetch_uv():
       "Authorization": "CWA-88EDF13E-87C9-4B54-B0A1-699275CFD8C2"
   }
   url = "https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0005-001"
-  data = requests.get(url, query_param).json()
-  # Dictionary to store max UVIndex for each county
-  max_uv_by_county = {}
-  
-  for location in data['records']['weatherElement']['location']:
-    county = station_id(str(location['StationID']))
-    uv_index = int(location['UVIndex'])
-    if county not in max_uv_by_county or uv_index > max_uv_by_county[county]['UVIndex']:
-      max_uv_by_county[county] = {
-          'county': county,
-          'UVIndex': uv_index
-      }
-  # Convert max_uv_by_county dictionary to a list of dictionaries
-    county_UV_Index_list = list(max_uv_by_county.values())
-  
-  return {'data': county_UV_Index_list}
+  try:
+    data = requests.get(url, query_param).json()
+    # Dictionary to store max UVIndex for each county
+    max_uv_by_county = {}
+    
+    for location in data['records']['weatherElement']['location']:
+      county = station_id(str(location['StationID']))
+      uv_index = int(location['UVIndex'])
+      if county not in max_uv_by_county or uv_index > max_uv_by_county[county]['UVIndex']:
+        max_uv_by_county[county] = {
+            'county': county,
+            'UVIndex': uv_index
+        }
+    # Convert max_uv_by_county dictionary to a list of dictionaries
+      county_UV_Index_list = list(max_uv_by_county.values())
+    
+    content = {'data': county_UV_Index_list}
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=content
+    )
+  except (HTTPException, ValidationError) as e:
+      response = Error(
+          error=True,
+          message=e.detail
+      )
+      return JSONResponse(
+          status_code=e.status_code,
+          content=dict(response)
+      )
 
 
 @router.get("/api/hotdamage", responses={

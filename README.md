@@ -82,4 +82,4 @@
 2. 書硯: weather cache/ api modify and a little basemodel.py
 3. 聖鎧: warning.html
 4. 宜群: navbar 連結 / UX
-5. 21:30 daily sprint
+5. 22:00 daily sprint
