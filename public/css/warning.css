@@ -1,0 +1,227 @@
+
+.title{
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+    justify-content: space-around;
+}
+.title span{
+    margin-right: 30px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    background:linear-gradient(to bottom ,rgb(252, 252, 178),white,white,white,rgb(252, 252, 178));
+    padding: 20px;
+    position: relative;
+}
+.map__tag{
+    display: none;
+    position: absolute;
+    background-color: white;
+    font-size: 12px;
+    font-weight: 500;
+    border: 0.5px solid rgb(176, 174, 174);
+    border-radius: 5px;
+    padding: 2px;
+}
+.map__mark{
+    position: absolute;
+    bottom: 20px;
+    width: 60px;
+    font-size: 12px;
+    font-size: 500;
+}
+.area{
+    height: 60vh;
+    margin-right: 50px;
+}
+.hot{
+    height: 60vh;
+    margin-right: 50px;
+    width:350px;
+    
+}
+.title__listContainer{
+    display: inline-block;
+    position: relative;
+}
+.title__btn--tri{
+    width: 0;
+    height: 0;
+    border-left:6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid rgb(181, 181, 233);
+    margin-left: 5px;
+}
+.no_tri{
+    border-top: 0;
+    border-bottom: 10px solid rgb(181, 181, 233);
+}
+.title__list{
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 0px 23px 0px 6px;
+    box-shadow: 3px 3px 3px gray;
+    cursor: pointer;
+    z-index: 100;
+    width: 91px;
+}
+
+.title__listItem{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.title__btn{
+    background-color: white;
+    width:120px;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    box-shadow: 3px 3px 3px gray;
+    cursor: pointer;
+}
+.title__purple{
+    display: flex;
+    gap:30px
+}
+.title__purple--title{
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title__purple--img{
+    border-radius: 50%;
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 30px;
+    cursor: default;
+}
+.title__purple--tag{
+    font-size: 10px;
+    position: absolute;
+    background-color: rgb(233, 221, 221);
+    color:black;
+    display: none;
+    padding: 3px;
+    border-radius: 3px;
+}
+.open{
+    display: block;
+}
+.area__title{
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.area__itemContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+.area__item{
+    background-color: red;
+    color:white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px 5px 5px 5px ;
+}
+.area__img{
+    font-size: 16;
+    font-weight: 700;
+    display: flex;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(24, 24, 24,0.2);
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.area__img--y{
+    margin:3px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    background-color:yellow ;
+}
+.area__img--o{
+    margin:3px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    background-color: orange;
+}
+.area__img--r{
+    margin:3px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    background-color: red;
+}
+.area__img--b{
+    margin:3px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    background-color:black ;
+}
+.hot__title{
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.black{
+    background-color: black;
+}
+.red{
+    background-color: red;
+}
+.orange{
+    background-color: orange;
+}
+.yellow{
+    background-color: yellow;
+    color:black;
+}
+.fill__black{
+    fill: black;
+}
+.fill__red{
+    fill: red;
+}
+.fill__orange{
+    fill: orange;
+}
+.fill__yellow{
+    fill: yellow;
+}
+@media(max-width:1200px){
+    .container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .title{
+        padding: 10px;
+        justify-content: none;
+    }
+    .title span {
+        margin-right: 5px;
+    }
+}
