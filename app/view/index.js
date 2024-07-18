@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     url.pathname = "/api/send_discord_message";
     const params = { county_name: countyName };
     url.search = new URLSearchParams(params).toString();
-
+    console.log(url);
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -28,17 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const data = await response.json();
       console.log("Response Data:", data);
-      // Handle the response data here
     } catch (error) {
       console.error("Error:", error);
-      // Handle the error here
     }
   }
 
   const renderWeatherData = async () => {
     try {
       const data = await fetchWeatherData();
-      console.log(data.data);
       const weatherTable = document.querySelector(".container-weather-table");
       const publishTimeDiv = document.querySelector(".all-county-publish-time");
       publishTimeDiv.innerHTML = `<p>發佈時間：${data.publishTime}</p>`;
@@ -82,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         rowDiv.appendChild(countyDiv);
 
-        //last item or the next item starts a new row
         if (i === data.data.length - 1 || (i + 1) % 2 === 0) {
           weatherTable.appendChild(rowDiv);
         }

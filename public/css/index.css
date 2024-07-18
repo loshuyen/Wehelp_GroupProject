@@ -1,7 +1,6 @@
 .section-all-county{
   margin-bottom: 10px;
   background: #d3d2d2;
-  
 }
 .container-all-county{
   display: flex;
@@ -15,7 +14,6 @@
   margin-top: 30px;
   text-align: center;
 }
-
 .all-county-publish-time{
   display: block;
   width: 500px;
@@ -24,7 +22,6 @@
   padding-top: 10px;
   margin-bottom: 10px;
 }
-
 svg {
   height: 80vh;
 }
@@ -41,14 +38,19 @@ path {
 .svg-container{
   margin-top: 10px;
 }
-
+.table-container{
+  display: flex;
+  justify-content: center;
+}
 .main-weather-table{
   display: flex;
   justify-content: center;
   margin-bottom: 25px;
 }
 .container-weather-table{
-  width: 700px;
+  width: 100%;;
+  height: 90%;
+  margin: auto;
 }
 .container-weather-table > .row{
   display: flex;
@@ -57,7 +59,7 @@ path {
 }
 .container-weather-table > .row > div{
   margin: 0px 10px;
-  padding: 10px 10px;
+  padding: 6px 10px;
   text-align: center;
 }
 .county-name{
@@ -66,7 +68,6 @@ path {
 .container-weather-table > .row > div >span{
   padding: 5px 20px;
 }
-
 .highlight {
   fill: rgb(229, 156, 88); 
   background-color: rgba(229, 156, 88, 0.5); 
@@ -89,13 +90,11 @@ path {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    
   }
   .container-weather-table{
-    width: 500px;
+    width: 100%;
     margin-top: 30px;
   }
-
   .container-weather-table > .row{
     display: flex;
     justify-content: center;
@@ -104,7 +103,6 @@ path {
   .container-weather-table > .row > div{
     margin: 5px 5px;
     padding: 0px 5px;
-    /* cursor: pointer; */
   }
   .container-weather-table > .row > div >span{
     padding: 5px 10px;
@@ -121,14 +119,12 @@ path {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    
   }
   .container-weather-table{
-    width: 500px;
+    width: 100%;
     margin-top: 30px;
     font-size: 14px;
   }
-
   .container-weather-table > .row{
     display: flex;
     justify-content: center;
@@ -137,7 +133,6 @@ path {
   .container-weather-table > .row > div{
     margin: 5px 5px;
     padding: 0px 5px;
-    /* cursor: pointer; */
   }
   .container-weather-table > .row > div >span{
     padding: 5px 0px;
