@@ -6,7 +6,7 @@ import json
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 from .weather import get_weather_by_county
-from .warning import fetch_hotindex, fetch_uv
+from .warning import get_hot_damage, get_uv
 from config.basemodel import *
 
 
@@ -22,7 +22,7 @@ router = APIRouter()
                       },
                 500: {'model': Error, 'description': '伺服器內部錯誤'}
             })
-async def discord_bot(request: Request, weather: Annotated[dict, Depends(lambda county_name='臺北市': get_weather_by_county(county_name))], hot: Annotated[dict, Depends(fetch_hotindex)], uv: Annotated[dict, Depends(fetch_uv)]):
+async def discord_bot(request: Request, weather: Annotated[dict, Depends(lambda county_name='臺北市': get_weather_by_county(county_name))], hot: Annotated[dict, Depends(get_hot_damage)], uv: Annotated[dict, Depends(get_uv)]):
     
     # get data from Depends
     api_array_list = []
@@ -36,6 +36,7 @@ async def discord_bot(request: Request, weather: Annotated[dict, Depends(lambda 
     county_name = api_array_list[0]
     maxIndex_list = []
     warning_list = []
+    
     for data in json.loads(hot.body)['data']:
         if data['county'] == county_name:
             for towns in data['data']:
