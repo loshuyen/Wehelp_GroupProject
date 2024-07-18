@@ -20,9 +20,6 @@ export function discordBot(weather, percip, temp, UV, hotDam, cIndex){
         height: 1000,
         width: 1400
       },
-      provider: {
-        name: 'Wehelp 2nd phase group pj. team 8'
-      },
       author: {
         name: '下禮拜三就是睡衣派對!',
         icon_url: 'https://static.wikia.nocookie.net/chiikawa/images/c/cc/%E5%90%89%E4%BC%8A_%E5%8A%A8%E7%94%BB.png/revision/latest/scale-to-width/360?cb=20231017103026&path-prefix=zh'
