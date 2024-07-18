@@ -104,7 +104,6 @@ path {
   .container-weather-table > .row > div{
     margin: 5px 5px;
     padding: 0px 5px;
-    /* cursor: pointer; */
   }
   .container-weather-table > .row > div >span{
     padding: 5px 10px;
@@ -124,7 +123,7 @@ path {
     
   }
   .container-weather-table{
-    width: 500px;
+    width: 100%;
     margin-top: 30px;
     font-size: 14px;
   }
