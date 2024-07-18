@@ -141,10 +141,12 @@ def fetch_uv():
     print('已取得氣象局紫外線資料')
 
 
+# 中央氣象署每日下午 17:30 依據預測發布隔日之高溫資訊，並根據當日之最新預報及實際的高溫監測於 7: 30、11: 30、14: 30 定時更新
+
 fetch_hotindex()
 fetch_uv()
 scheduler = BackgroundScheduler()
-scheduler.add_job(fetch_hotindex, 'cron', hour=0, minute=30)
+scheduler.add_job(fetch_hotindex, 'cron', hour=8, minute=0)
 scheduler.add_job(fetch_uv, 'cron', hour=14, minute=30)
 scheduler.start()
 
