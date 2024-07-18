@@ -60,7 +60,7 @@ function create_list(n){
         if(item === County){
             i.classList.add("list__item--high")
         }
-        else if(index%4===0 || index%4===1){
+        if(index%4===0 || index%4===1){
             i.classList.add("list__item--gray")
         }
         i.addEventListener("click",(e)=>{
@@ -69,7 +69,7 @@ function create_list(n){
             listChild1.forEach(child => {child.classList.remove("list__item--high")})
             const listChild2 = document.querySelectorAll(".list2 *")
             listChild2.forEach(child => {child.classList.remove("list__item--high")})
-            e.currentTarget.className = ("list__item list__item--high")
+            e.currentTarget.classList.add("list__item--high")
             update_card(county)
         })
         ul.appendChild(i)
@@ -77,6 +77,16 @@ function create_list(n){
 
 }
 
+async function create_background(){
+    const data = Data
+    const img = document.querySelector(".background")
+    if(data.Wx[0].value.includes("雨")){
+        img.src = "/images/water-8622588_1280.png"
+    }
+    else{
+        img.src = "/images/sky-7336915_1280.jpg"
+    }
+}
 function create_card_container(){
     const container = document.querySelector("#container")
     const title = document.createElement("div")
@@ -181,6 +191,13 @@ async function create_card(n){
 
 async function update_card(county) {
     const data = await get_data("/api/weather/"+county)
+    const img = document.querySelector(".background")
+    if(data.Wx[0].value.includes("雨")){
+        img.src = "/images/water-8622588_1280.png"
+    }
+    else{
+        img.src = "/images/sky-7336915_1280.jpg"
+    }
     const container = document.querySelector("#card_container")
     container.innerHTML = ""
     const title = document.createElement("div")
@@ -275,6 +292,7 @@ async function update_card(county) {
 
     }
 }
+create_background()
 create_list(1)
 create_card_container()
 create_card(0)

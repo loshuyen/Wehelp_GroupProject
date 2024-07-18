@@ -2,6 +2,14 @@
     display: flex;
     justify-content: space-around;
 }
+.background{
+    z-index: -100;
+    position: fixed;
+    opacity: 0.5;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
 .list1{
     list-style-type: none;
     padding: 0px;
@@ -43,15 +51,18 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-color: white;
+}
+
+.list__item--gray{
+    background-color: aliceblue;
 }
 .list__item--high{
     background-color: rgb(194, 202, 209);
     font-weight: 900;
 }
-.list__item--gray{
-    background-color: aliceblue;
-}
 .title{
+    width: 600px;
     margin: 30px;
     height:50px;
     display: flex;
@@ -188,6 +199,11 @@
     }
     .list1{
         display: none;
+    }
+    .title{
+        width: 90%;
+        justify-content: center;
+        font-size: 25px;
     }
     .card{
         width: 90%;
