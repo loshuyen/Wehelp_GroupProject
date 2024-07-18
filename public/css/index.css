@@ -34,10 +34,6 @@ path {
   transition: 0.5s;
   cursor: pointer;
 }
-/* path:hover {
-  fill: #448899;
-} */
-
 .main-container{
   display: flex;
   justify-content: center;
@@ -62,6 +58,9 @@ path {
 .container-weather-table > .row > div{
   margin: 0px 10px;
   padding: 10px 10px;
+  text-align: center;
+}
+.county-name{
   cursor: pointer;
 }
 .container-weather-table > .row > div >span{
@@ -70,10 +69,16 @@ path {
 
 .highlight {
   fill: rgb(229, 156, 88); 
-  background-color: rgb(229, 156, 88); 
+  background-color: rgba(229, 156, 88, 0.5); 
+}
+.discord-icon{
+  vertical-align: bottom;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
 
-@media (max-width: 1200px) {
+@media (min-width:401px) and (max-width: 1200px) {
   svg {
     height: 50vh;
   }
@@ -99,9 +104,42 @@ path {
   .container-weather-table > .row > div{
     margin: 5px 5px;
     padding: 0px 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
   .container-weather-table > .row > div >span{
     padding: 5px 10px;
+  }
+}
+@media (max-width: 400px) {
+  svg {
+    height: 50vh;
+  }
+  .all-county-publish-time{
+    width: 300px;
+  }
+  .main-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+  }
+  .container-weather-table{
+    width: 500px;
+    margin-top: 30px;
+    font-size: 14px;
+  }
+
+  .container-weather-table > .row{
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+  }
+  .container-weather-table > .row > div{
+    margin: 5px 5px;
+    padding: 0px 5px;
+    /* cursor: pointer; */
+  }
+  .container-weather-table > .row > div >span{
+    padding: 5px 0px;
   }
 }
