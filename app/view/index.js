@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   async function sendDiscordMessage(countyName) {
-    const url = new URL("http://0.0.0.0:8000/api/send_discord_message");
+    const url = new URL(window.location.href);
+    url.pathname = "/api/send_discord_message";
     const params = { county_name: countyName };
     url.search = new URLSearchParams(params).toString();
 
