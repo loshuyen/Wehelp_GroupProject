@@ -14,7 +14,7 @@
 ## 優先序
 
 ```py
-1+2 > 5 > 3 > 4
+1+2 > 5 > 3 > 4 > 6
 ```
 
 ## EPIC, STORY & TASK
@@ -83,3 +83,11 @@
 3. 聖鎧: warning.html
 4. 宜群: navbar 連結 / UX
 5. 22:00 daily sprint
+
+### day4
+
+1. 陳昊: warning cache, discord bot
+2. 書硯: render or EC2 佈署
+3. 聖鎧: warning.html api/ county,warning RWD
+4. 宜群: index 台灣圖 RWD, UX 3 html
+5. discussion after Martin sharing
