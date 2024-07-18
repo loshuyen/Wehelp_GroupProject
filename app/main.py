@@ -17,8 +17,12 @@ app.mount("/view", StaticFiles(directory="view"), name="view")
 async def index(request: Request):
 	return FileResponse("../static/index.html", media_type="text/html")
 
+@app.get("/warning", include_in_schema=False)
+async def index(request: Request):
+	return FileResponse("../static/warning.html", media_type="text/html")
 
-@app.get("/{county}", include_in_schema=False)
+@app.get("/county", include_in_schema=False)
 async def index(request: Request):
 	return FileResponse("../static/county.html", media_type="text/html")
+
 
