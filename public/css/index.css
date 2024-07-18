@@ -1,3 +1,6 @@
+body{
+  min-height: 95vh;
+}
 .section-all-county{
   margin-bottom: 10px;
   background: #d3d2d2;
@@ -10,14 +13,14 @@
 .title-all-county{
   width: 1200px;
   text-decoration: underline;
-  font-size: 22px;
+  font-size: 28px;
   margin-top: 30px;
   text-align: center;
 }
 .all-county-publish-time{
   display: block;
-  width: 500px;
-  font-size: 12px;
+  width: 1000px;
+  font-size: 18px;
   text-align: right;
   padding-top: 10px;
   margin-bottom: 10px;
@@ -51,6 +54,7 @@ path {
   width: 100%;;
   height: 90%;
   margin: auto;
+  padding-top: 20px;
 }
 .container-weather-table > .row{
   display: flex;
@@ -77,6 +81,17 @@ path {
   width: 25px;
   height: 25px;
   cursor: pointer;
+}
+.umbrella-icon{
+  vertical-align: bottom;
+  width: 15px;
+  height: 15px;
+}
+
+@media (min-width:1201px) and (max-width: 2000px) {
+  .container-weather-table{
+    padding-top: 70px;
+  }
 }
 
 @media (min-width:401px) and (max-width: 1200px) {
