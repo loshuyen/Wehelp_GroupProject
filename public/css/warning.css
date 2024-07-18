@@ -233,13 +233,14 @@
         top: 600px;
     }
     .hot {
-        height: 40vh;
+        height: auto;
         margin-right: 50px;
+        margin-top: 50px;
         width: 55vw;
         margin-right: 0;
     }
     .area {
-        height: 30vh;
+        height: auto;
         margin-right: 0;
         padding-top: 50px;
     }
