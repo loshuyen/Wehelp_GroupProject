@@ -39,14 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const weatherTable = document.querySelector(".container-weather-table");
       const publishTimeDiv = document.querySelector(".all-county-publish-time");
       publishTimeDiv.innerHTML = `<p>發佈時間：${data.publishTime}</p>`;
+
       if (!data || !data.data || data.data.length === 0) {
         const div = document.createElement("div");
         div.textContent = "No weather data available.";
         weatherTable.appendChild(div);
         return;
       }
-
-      weatherTable.innerHTML = "";
 
       for (let i = 0; i < data.data.length; i++) {
         const weatherData = data.data[i];
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         countyDiv.innerHTML = `
           <span class="county-name">${weatherData.county}</span>
           <span>${weatherData.MinT}-${weatherData.MaxT}˚C</span>
-          <span>${weatherData.PoP}%</span>
+          <span><img class="umbrella-icon" src="/images/umbrella.png" alt="">${weatherData.PoP}%</span>
           <img class="discord-icon" src="/images/chiikawa_avatar.webp" title="點我點我">
         `;
         const countyNameSpan = countyDiv.querySelector(".county-name");
