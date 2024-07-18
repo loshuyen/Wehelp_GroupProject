@@ -25,7 +25,7 @@ const TaiwanCities = [
 ];
 const url = new URL(window.location.href)
 const County = decodeURI(url.pathname.split("/")[1])
-console.log(County)
+
 
 
 async function get_data(url){
@@ -35,12 +35,17 @@ async function get_data(url){
 }
 let Data = await get_data(Url+"api/weather/"+County)
 
+function click_hotdamage(){
+    const btn = document.querySelector("#nav-warning")
+    btn.addEventListener("click",()=>{
+        window.location.href = "/warning"
+    })
+}
 
-
-function create_list(){
+function create_list(n){
     const container = document.querySelector("#container")
     const ul = document.createElement("ul")
-    ul.classList.add("list")
+    ul.classList.add(`list${n}`)
     container.appendChild(ul)
     TaiwanCities.map((item,index)=>{
         const i = document.createElement("li")
@@ -74,6 +79,12 @@ function create_card_container(){
 
 async function create_card(n){
     const data = Data
+    const tag = document.createElement("div")
+    tag.classList.add("card__tag")
+    tag.innerText = Data.Wx[n].value
+
+
+    
     const container = document.querySelector("#card_container")
     const card = document.createElement("div")
     card.classList.add("card")
@@ -117,6 +128,7 @@ async function create_card(n){
     container.appendChild(card)
     card.appendChild(img)
     card.appendChild(text_container)
+    document.body.appendChild(tag)
     text_container.appendChild(time)
     text_container.appendChild(content_container)
     content_container.appendChild(tem)
@@ -124,7 +136,7 @@ async function create_card(n){
     content_container.appendChild(des)
 
     if(Data.Wx[n].value.includes("雨")){
-        for(let i=0;i<100;i+=3){
+        for(let i=0;i<24;i+=3){
             setTimeout(()=>{
                 const rainy = document.createElement("div")
                 rainy.classList.add("rain__fall")
@@ -134,9 +146,31 @@ async function create_card(n){
             
         }
     }
+    if(Data.Wx[n].value.includes("雲")||Data.Wx[n].value.includes("陰")){
+        const cloud = document.createElement("div")
+        cloud.classList.add("cloud")
+        card.appendChild(cloud)
+    }
+
+    card.addEventListener("mouseover",(e)=>{
+        card.addEventListener("mousemove",(event)=>{
+            tag.style.top = event.pageY+10 +"px"
+            tag.style.left = event.pageX+10+"px"
+        })
+        tag.classList.add("open")
+    })
+    card.addEventListener("mouseout",(e)=>{
+        card.removeEventListener("mousemove",(event)=>{
+            tag.style.top = event.pageY+10 +"px"
+            tag.style.left = event.pageX+10+"px"
+        })
+        tag.classList.remove("open")
+    })
 }
-create_list()
+create_list(1)
 create_card_container()
 create_card(0)
 create_card(1)
 create_card(2)
+create_list(2)
+click_hotdamage()
