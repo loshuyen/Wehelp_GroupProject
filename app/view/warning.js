@@ -29,12 +29,12 @@ let COUNTY = "臺北市"
 let TOWN = "信義區"
 let myChart
 async function getData(){
-    const res = await fetch("http://127.0.0.1:8000/api/hotdamage")
+    const res = await fetch("/api/hotdamage")
     const data = await res.json()
     return data
 }
 async function getPurple(){
-    const res = await fetch("http://127.0.0.1:8000/api/UV")
+    const res = await fetch("/api/UV")
     const data = await res.json()
     return data
 }
