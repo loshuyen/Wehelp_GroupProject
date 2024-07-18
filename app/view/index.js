@@ -15,9 +15,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  async function sendDiscordMessage(countyName) {
+    const url = new URL("http://localhost:8000/api/send_discord_message");
+    const params = { county_name: countyName };
+    url.search = new URLSearchParams(params).toString();
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Response Data:", data);
+      // Handle the response data here
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle the error here
+    }
+  }
+
   const renderWeatherData = async () => {
     try {
       const data = await fetchWeatherData();
+      console.log(data.data);
       const weatherTable = document.querySelector(".container-weather-table");
       const publishTimeDiv = document.querySelector(".all-county-publish-time");
       publishTimeDiv.innerHTML = `<p>發佈時間：${data.publishTime}</p>`;
@@ -28,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // weatherTable.innerHTML = "";
+      weatherTable.innerHTML = "";
 
       for (let i = 0; i < data.data.length; i++) {
         const weatherData = data.data[i];
@@ -41,14 +61,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const countyDiv = document.createElement("div");
         countyDiv.className = "table-county-div";
         countyDiv.id = `county-${i}`;
+        countyDiv.title = `${weatherData.Wx}`;
+
         countyDiv.innerHTML = `
-          <span>${weatherData.county}</span>
+          <span class="county-name">${weatherData.county}</span>
           <span>${weatherData.MinT}-${weatherData.MaxT}˚C</span>
           <span>${weatherData.PoP}%</span>
+          <img class="discord-icon" src="/images/chiikawa_avatar.webp" title="點我點我">
         `;
-        countyDiv.addEventListener("click", () => {
+        const countyNameSpan = countyDiv.querySelector(".county-name");
+        countyNameSpan.addEventListener("click", () => {
           window.location.href = `/county?name=${weatherData.county}`;
         });
+
+        const discordIcon = countyDiv.querySelector(".discord-icon");
+        discordIcon.addEventListener("click", () => {
+          sendDiscordMessage(weatherData.county);
+        });
+
         rowDiv.appendChild(countyDiv);
 
         //last item or the next item starts a new row
