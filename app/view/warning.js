@@ -318,7 +318,6 @@ function fill_map(){
         else if(AREA[name][city][0].maxWarning==="危險"){path.classList.add("fill__red")}
         else if(AREA[name][city][0].maxWarning==="警戒"){path.classList.add("fill__orange")}
         else if(AREA[name][city][0].maxWarning==="注意"){path.classList.add("fill__yellow")}
-        console.log(name, city, AREA[name][city][0].maxWarning, e)
 })}
 
 init_data()
