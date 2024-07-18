@@ -1,4 +1,4 @@
-const Url = "http://127.0.0.1:8000/"
+const Url = "/"
 const TaiwanCities = [
     "臺北市",
     "新北市",
