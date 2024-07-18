@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span>${weatherData.PoP}%</span>
         `;
         countyDiv.addEventListener("click", () => {
-          window.location.href = `/${weatherData.county}`;
+          window.location.href = `/county?name=${weatherData.county}`;
         });
         rowDiv.appendChild(countyDiv);
 
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         }
         svgRegion.addEventListener("click", () => {
-          window.location.href = `/${weatherData.county}`;
+          window.location.href = `/county?name=${weatherData.county}`;
         });
       }
     } catch (error) {
