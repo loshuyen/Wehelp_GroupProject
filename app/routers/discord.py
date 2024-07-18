@@ -131,3 +131,13 @@ async def discord_bot(request: Request, weather: Annotated[dict, Depends(lambda 
         )
 
 
+def routine_call():
+    url = 'https://wehelp-groupproject.onrender.com/api/send_discord_message'
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    requests.get(url, headers=headers)
+
+schedule = BackgroundScheduler()
+schedule.add_job(routine_call, 'cron', hour=6, minute=30)
+schedule.start()
