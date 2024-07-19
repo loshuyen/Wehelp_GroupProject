@@ -271,7 +271,7 @@
     .map__mark{
         left: 20px;
         width:80px;
-        top: 350px;
+        top: 0px;
         font-size: 16px;
         font-weight: 700;
     }

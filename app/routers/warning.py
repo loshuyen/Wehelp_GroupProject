@@ -4,6 +4,7 @@ from config.basemodel import *
 from pydantic import ValidationError
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
+import json
 
 router = APIRouter(
     responses={
@@ -17,7 +18,7 @@ router = APIRouter(
 
 def fetch_hotindex():
   # clear the previous data
-  global county_hot_damage_list 
+  global county_hot_damage_list
   county_hot_damage_list = []
   query_param = {
     "Authorization": "CWA-88EDF13E-87C9-4B54-B0A1-699275CFD8C2",
@@ -71,6 +72,11 @@ def fetch_hotindex():
       }
       county_hot_damage_list.append(county_hot_damage)
     print('已取得氣象局熱傷害資料')
+
+    dictionary = {'data': county_hot_damage_list}
+    with open('warning.json', "w") as outfile:
+      json.dump(dictionary, outfile)
+      print('已將氣象局熱傷害資料存於json')
 
 def station_id(id):
   match id:
@@ -141,10 +147,13 @@ def fetch_uv():
     print('已取得氣象局紫外線資料')
 
 
-fetch_hotindex()
+# 中央氣象署每日下午 17:30 依據預測發布隔日之高溫資訊，並根據當日之最新預報及實際的高溫監測於 7: 30、11: 30、14: 30 定時更新
+
+
 fetch_uv()
 scheduler = BackgroundScheduler()
-scheduler.add_job(fetch_hotindex, 'cron', hour=0, minute=30)
+scheduler.add_job(fetch_hotindex, 'cron', hour=8, minute=0)
+scheduler.add_job(fetch_hotindex, 'cron', hour=12, minute=20)
 scheduler.add_job(fetch_uv, 'cron', hour=14, minute=30)
 scheduler.start()
 
@@ -153,7 +162,14 @@ scheduler.start()
 },response_class=JSONResponse,summary="取得各縣市鄉鎮五天內當日最大熱傷害指數與傷害警示")
 async def get_hot_damage(request: Request):
   try:
-      content = {'data': county_hot_damage_list}
+      content = {}
+      if 'county_hot_damage_list' in globals():
+        content = {'data': county_hot_damage_list}
+        print("自global中取得熱傷害變數")
+      else:
+        with open('warning.json', "r") as readfile:
+          content = json.load(readfile)
+          print("自json中存取熱傷害資料")
       return JSONResponse(
           status_code=status.HTTP_200_OK,
           content=content
