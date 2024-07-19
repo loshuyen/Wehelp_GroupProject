@@ -18,7 +18,7 @@ router = APIRouter(
 
 def fetch_hotindex():
   # clear the previous data
-  # global county_hot_damage_list
+  global county_hot_damage_list
   county_hot_damage_list = []
   query_param = {
     "Authorization": "CWA-88EDF13E-87C9-4B54-B0A1-699275CFD8C2",
@@ -72,6 +72,7 @@ def fetch_hotindex():
       }
       county_hot_damage_list.append(county_hot_damage)
     print('已取得氣象局熱傷害資料')
+
     dictionary = {'data': county_hot_damage_list}
     with open('warning.json', "w") as outfile:
       json.dump(dictionary, outfile)
@@ -161,9 +162,13 @@ scheduler.start()
 async def get_hot_damage(request: Request):
   try:
       content = {}
-      with open('warning.json', "r") as readfile:
-        content = json.load(readfile)
-        print("自json中存取熱傷害資料")
+      if 'county_hot_damage_list' in globals():
+        content = {'data': county_hot_damage_list}
+        print("自global中取得熱傷害變數")
+      else:
+        with open('warning.json', "r") as readfile:
+          content = json.load(readfile)
+          print("自json中存取熱傷害資料")
       return JSONResponse(
           status_code=status.HTTP_200_OK,
           content=content
