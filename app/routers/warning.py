@@ -4,6 +4,7 @@ from config.basemodel import *
 from pydantic import ValidationError
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
+import json
 
 router = APIRouter(
     responses={
@@ -17,7 +18,7 @@ router = APIRouter(
 
 def fetch_hotindex():
   # clear the previous data
-  global county_hot_damage_list 
+  # global county_hot_damage_list
   county_hot_damage_list = []
   query_param = {
     "Authorization": "CWA-88EDF13E-87C9-4B54-B0A1-699275CFD8C2",
@@ -71,6 +72,10 @@ def fetch_hotindex():
       }
       county_hot_damage_list.append(county_hot_damage)
     print('已取得氣象局熱傷害資料')
+    dictionary = {'data': county_hot_damage_list}
+    with open('warning.json', "w") as outfile:
+      json.dump(dictionary, outfile)
+      print('已將氣象局熱傷害資料存於json')
 
 def station_id(id):
   match id:
@@ -155,7 +160,10 @@ scheduler.start()
 },response_class=JSONResponse,summary="取得各縣市鄉鎮五天內當日最大熱傷害指數與傷害警示")
 async def get_hot_damage(request: Request):
   try:
-      content = {'data': county_hot_damage_list}
+      content = {}
+      with open('warning.json', "r") as readfile:
+        content = json.load(readfile)
+        print("自json中存取熱傷害資料")
       return JSONResponse(
           status_code=status.HTTP_200_OK,
           content=content
