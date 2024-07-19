@@ -1,6 +1,7 @@
 .container{
     display: flex;
     justify-content: space-around;
+    min-height: 90vh;
 }
 .background{
     z-index: -100;

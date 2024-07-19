@@ -1,17 +1,17 @@
-# GroupProject - team 8
+# GroupProject - team 8 吉伊卡哇氣象報報
+
+## [連結按我](https://wehelp-groupproject.onrender.com/)
 
 ## 氣象資訊 User Story
 
 > 氣象局API [Swagger](https://opendata.cwa.gov.tw/dist/opendata-swagger.html#/)
 
-1. 使用者/欲查詢地區未來36小時內的天氣、氣溫區間與降雨情況/因為想提前應對
-2. 使用者/欲查詢全台灣目前的天氣狀況、降雨機率圖示，並以[表格](https://www.cwa.gov.tw/V8/C/W/County/index.html)呈現/想問候當地的朋友時可以參考
-3. 使用者/欲查詢地區未來五天中午的熱傷害指數與警戒標示，並以[此方式](https://crowa.cwa.gov.tw/HealthWeather/)呈現/不想被熱死
-4. 使用者/欲查詢全台灣當日指外線指數，並以[此方式](https://www.cwa.gov.tw/V8/C/W/OBS_UVI.html)呈現/要擦防曬
-5. 使用者/想要每天早上在Discord收到Bot傳的最新每日氣象預報/方便
-6. Dev/在氣象局公布新數據之後去call api並存在cache中/不用每一次request都要call兩次api
+1. 使用者想要概覽全台灣各縣市今日氣溫、降雨機率，作為出遊或問候時的參考
+2. 使用者想要特定縣市36小時內天氣預報，包括氣溫、降雨機率、天氣概況與體感舒適度，作為近期出門穿搭與攜帶雨具的參考。[表格參考](https://www.cwa.gov.tw/V8/C/W/County/index.html)
+3. 使用者想要知道特定縣市五日內熱傷害警示與當天紫外線強度，作為今天是否適合戶外活動的依據。[呈現方式參考1](https://crowa.cwa.gov.tw/HealthWeather/),[呈現方式參考2](https://www.cwa.gov.tw/V8/C/W/OBS_UVI.html)呈現/要擦防曬
+4. 使用者想要每天早上在Discord上收到當日氣象簡述，作為出門前的提醒。
 
-## 優先序
+## 開發優先序
 
 ```py
 1+2 > 5 > 3 > 4 > 6
@@ -42,9 +42,12 @@
   - routers
     - weather.py: API router of task 1 & 2
     - warning.py: API router of task 3 & 4
-  - view: front-end logic operating DOM
+    - discord.py: API router of task 5
+  - view
+    - county.js
+    - index.js
+    - warning.js
   - main.py: Controller
-  - handlers.py: Define actions for exceptions
 - public
   - css
     - basic.css: CSS for basic compartments
@@ -56,9 +59,18 @@
   - index.html: HTML for task 1
   - county.html: HTML for task 2
   - warning.html: HTML for task 3 & 4
-- .env: key storage
 - .gitignore
 - README.md
+
+## Environment
+
+1. Server Host: Render
+2. Packages:
+    1. fastapi
+    2. pydantic.basemodel
+    3. APScheduler
+    4. requests
+    5. datetime
 
 ## Works
 
