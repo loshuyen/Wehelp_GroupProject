@@ -153,7 +153,7 @@ def fetch_uv():
 fetch_uv()
 scheduler = BackgroundScheduler()
 scheduler.add_job(fetch_hotindex, 'cron', hour=8, minute=0)
-scheduler.add_job(fetch_hotindex, 'cron', hour=12, minute=10)
+scheduler.add_job(fetch_hotindex, 'cron', hour=12, minute=20)
 scheduler.add_job(fetch_uv, 'cron', hour=14, minute=30)
 scheduler.start()
 
