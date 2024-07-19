@@ -217,7 +217,7 @@ function hover_map() {
     });
     e.addEventListener("click", () => {
       COUNTY = name;
-      TOWN = "";
+      TOWN = (Object.keys(AREA[COUNTY]))[0];;
       const btn = document.querySelector("#btn__span");
       btn.textContent = name;
       area.innerText = "";
