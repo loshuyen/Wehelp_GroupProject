@@ -102,7 +102,7 @@ function create_list() {
     i.innerText = item;
     i.addEventListener("click", (e) => {
       COUNTY = item;
-      TOWN = "";
+      TOWN = (Object.keys(AREA[COUNTY]))[0];
       const btn = document.querySelector("#btn__span");
       btn.textContent = item;
       container.classList.remove("open");
