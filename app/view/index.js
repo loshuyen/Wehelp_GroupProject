@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderWeatherData = async () => {
     try {
       const data = await fetchWeatherData();
-      const weatherTable = document.querySelector(".container-weather-table");
+      const weatherTable = document.querySelector(".weather-table-content");
+
       const publishTimeDiv = document.querySelector(".all-county-publish-time");
       publishTimeDiv.innerHTML = `<p>發佈時間：${data.publishTime}</p>`;
 
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         countyDiv.innerHTML = `
           <span class="county-name">${weatherData.county}</span>
           <span>${weatherData.MinT}-${weatherData.MaxT}˚C</span>
-          <span><img class="umbrella-icon" src="/images/umbrella.png" alt="">${weatherData.PoP}%</span>
+          <div class="rain-pop"><span><img class="umbrella-icon" src="/images/umbrella.png" alt="">${weatherData.PoP}%</span></div>
           <img class="discord-icon" src="/images/chiikawa_avatar.webp" title="點我點我">
         `;
         const countyNameSpan = countyDiv.querySelector(".county-name");
