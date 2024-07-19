@@ -50,6 +50,7 @@ scheduler.add_job(updateData, 'cron', hour=5, minute=30)
 scheduler.add_job(updateData, 'cron', hour=11, minute=30)
 scheduler.add_job(updateData, 'cron', hour=17, minute=30)
 scheduler.add_job(updateData, 'cron', hour=23, minute=30)
+scheduler.start()
 
 @router.get("/api/weather")
 def get_all_current_weather() -> CurrentWeather:
